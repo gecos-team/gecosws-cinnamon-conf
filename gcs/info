@@ -1,0 +1,26 @@
+# YAML 1.1
+# Fichero de configuración de paquetes de personalización de Gecos v2
+
+
+# Nombre del paquete (minúsculas-separado-con-guiones)
+name: gecosws-cinnamon-conf
+
+# Autor 
+author: Alexis Martin Castillo <amartin@emergya.com>
+
+# Priority
+priority: optional
+
+# Section
+section: metapackages
+
+shortdesc: "Gecos v2 cinnamon configuration"
+
+longdesc: "This package contains every Cinnamon files that it is modified for Gecos v2."
+
+# Versión del paquete
+version: 2.0
+
+# Cambios en esta versión
+changes:
+    - initial release
