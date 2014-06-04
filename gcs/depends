@@ -1,5 +1,6 @@
 ## DEPENDS
 # This file contains depends 
 ## END
+gecosws-chef-snitch
 gecosws-chef-notifier-cinnamon
 cinnamon
