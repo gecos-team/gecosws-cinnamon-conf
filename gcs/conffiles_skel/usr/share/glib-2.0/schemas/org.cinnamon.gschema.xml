@@ -13,7 +13,7 @@
     </key>
     
     <key type="as" name="enabled-applets">
-      <default>['panel1:left:0:menu@cinnamon.org', 'panel1:left:1:show-desktop@cinnamon.org', 'panel1:left:2:panel-launchers@cinnamon.org', 'panel1:left:3:window-list@cinnamon.org', 'panel1:right:0:notifications@cinnamon.org', 'panel1:right:1:user@cinnamon.org', 'panel1:right:2:gecosws-chef-activity-notifier-cinnamon@guadalinex.org', 'panel1:right:3:removable-drives@cinnamon.org', 'panel1:right:4:keyboard@cinnamon.org', 'panel1:right:5:bluetooth@cinnamon.org', 'panel1:right:6:network@cinnamon.org', 'panel1:right:7:sound@cinnamon.org', 'panel1:right:8:power@cinnamon.org', 'panel1:right:9:systray@cinnamon.org', 'panel1:right:10:calendar@cinnamon.org', 'panel1:right:11:windows-quick-list@cinnamon.org']</default>
+      <default>['panel1:left:0:menu@cinnamon.org', 'panel1:left:1:show-desktop@cinnamon.org', 'panel1:left:2:panel-launchers@cinnamon.org', 'panel1:left:3:window-list@cinnamon.org', 'panel1:right:0:notifications@cinnamon.org', 'panel1:right:1:user@cinnamon.org', 'panel1:right:2:removable-drives@cinnamon.org', 'panel1:right:3:keyboard@cinnamon.org', 'panel1:right:4:bluetooth@cinnamon.org', 'panel1:right:5:network@cinnamon.org', 'panel1:right:6:sound@cinnamon.org', 'panel1:right:7:power@cinnamon.org', 'panel1:right:8:systray@cinnamon.org', 'panel1:right:9:calendar@cinnamon.org', 'panel1:right:10:windows-quick-list@cinnamon.org']</default>
       <summary>Uuids of applets to enable</summary>
       <description>Cinnamon applets have a uuid property; this key lists applets which should be loaded.</description>
     </key>
@@ -92,16 +92,16 @@
     
     <key type="i" name="panel-top-height">
       <default>25</default>
-      <range min="20"/>
+      <range min="20" max="100"/>
       <summary>Panel size</summary>
-      <description>User-defined panel-height for top panel</description>
+      <description>User-defined panel-height for top panel. Note, this value may or may not be the true value in use at runtime, depending on any scaling that may be occurring (on hidpi screens, for instance).</description>
     </key>
-    
+
     <key type="i" name="panel-bottom-height">
       <default>25</default>
-      <range min="20"/>
+      <range min="20" max="100"/>
       <summary>Panel size</summary>
-      <description>User-defined panel-height for bottom panel</description>
+      <description>User-defined panel-height for bottom panel. Note, this value may or may not be the true value in use at runtime, depending on any scaling that may be occurring (on hidpi screens, for instance).</description>
     </key>
     
     <key type="b" name="panel-scale-text-icons">
@@ -262,7 +262,7 @@
     </key>
 
     <key type="as" name="overview-corner">
-      <default>['expo:true:false', 'scale:false:false', 'scale:false:false', 'scale:false:false']</default>
+      <default>['expo:false:false', 'scale:false:false', 'scale:false:false', 'desktop:false:false']</default>
       <summary>Properties of overview corners</summary>
       <description>Properties of overview corners, in the form functionality:hover:icon. The order in which properties are displayed is top left, top right, bottom left, bottom right.</description>
     </key>
@@ -280,7 +280,7 @@
     </key>
 
     <key type="as" name="favorite-apps">
-      <default>[ 'firefox.desktop', 'mintInstall.desktop', 'cinnamon-settings.desktop', 'xchat.desktop', 'gnome-terminal.desktop', 'nemo.desktop' ]</default>
+      <default>[ 'firefox.desktop', 'mintInstall.desktop', 'cinnamon-settings.desktop', 'hexchat.desktop', 'gnome-terminal.desktop', 'nemo.desktop' ]</default>
       <summary>List of desktop file IDs for favorite applications</summary>
       <description>The applications corresponding to these identifiers will be displayed in the favorites area.</description>
     </key>
@@ -402,6 +402,14 @@
       </description>
     </key>
 
+    <key type="b" name="prevent-focus-stealing">
+      <default>false</default>
+      <summary>Prevents windows that request user attention from stealing focus</summary>
+      <description>
+        When enabled, even if a window requires attention, it is not activated.
+      </description>
+    </key>
+
     <key type="i" name="desklet-decorations">
       <default>1</default>
       <summary>The decoration level of the desklets</summary>
@@ -431,7 +439,6 @@
     <child schema="org.cinnamon.theme" name="theme"/>   
     <child schema="org.cinnamon.recorder" name="recorder"/>
     <child schema="org.cinnamon.keyboard" name="keyboard"/>
-    <child schema="org.cinnamon.power" name="power"/>
     <child schema="org.cinnamon.desklets" name="desklets"/>
     <child schema="org.cinnamon.sounds" name="sounds"/>
 
@@ -445,6 +452,13 @@
       <default>false</default>
       <summary>Prevent the tile/snap OSD from showing</summary>
       <description>Hide the snap OSD.</description>
+    </key>
+
+    <key type="i" name="active-display-scale">
+      <range min="1" max="4"/>
+      <default>1</default>
+      <summary>Utility read-only setting used by st library</summary>
+      <description>Current scale factor</description>
     </key>
 
   </schema>
@@ -464,15 +478,7 @@
       <description>The type of keyboard to use.</description>
     </key>
   </schema>
-  
-  <schema path="/org/cinnamon/power/" id="org.cinnamon.power" gettext-domain="@GETTEXT_PACKAGE">
-      <key type="s" name="power-label">
-          <default>'percent'</default>
-          <summary>Display percentage in power applet</summary>
-          <description>Display battery remaining as percentage or time in power applet.</description>
-    </key>
-  </schema>
-
+    
   <schema path="/org/cinnamon/recorder/" id="org.cinnamon.recorder" gettext-domain="@GETTEXT_PACKAGE@">
     <key type="i" name="framerate">
       <default>15</default>
@@ -668,9 +674,25 @@
    
     <key type="s" name="login-file">
       <default>""</default>
-      <summary>Which sound to play when switching windows</summary>
+      <summary>Which sound to play when logging in</summary>
       <description>
         Which sound to play during login.
+      </description>
+    </key> 
+
+    <key type="b" name="logout-enabled">
+      <default>false</default>
+      <summary>Whether to play a sound during logout</summary>
+      <description>
+        Whether to play a sound during logout.
+      </description>
+    </key> 
+   
+    <key type="s" name="logout-file">
+      <default>""</default>
+      <summary>Which sound to play when logging out</summary>
+      <description>
+        Which sound to play during logout.
       </description>
     </key>          
 
