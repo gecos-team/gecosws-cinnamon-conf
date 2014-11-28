@@ -1998,7 +1998,7 @@ MyApplet.prototype = {
             }else{
                 GLib.spawn_command_line_async('zenity --info --text="'+text_info+'" --no-wrap');
             }
-        }));
+        });
         
         this.favoritesBox.add_actor(button.actor, { y_align: St.Align.END, y_fill: false });
 
