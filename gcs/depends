@@ -2,7 +2,7 @@
 # This file contains depends 
 ## END
 gecosws-chef-snitch
-gecosws-chef-notifier-cinnamon
+#gecosws-chef-notifier-cinnamon
 cinnamon
 cinnamon-session-common
 software-properties-gtk
