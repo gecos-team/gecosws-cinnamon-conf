@@ -5,4 +5,9 @@
 #gecosws-chef-notifier-cinnamon
 cinnamon
 cinnamon-session-common
+
+# Empty package that creates a dependency to mintsources
 software-properties-gtk
+
+# mintsources needs python-apt
+python-apt
