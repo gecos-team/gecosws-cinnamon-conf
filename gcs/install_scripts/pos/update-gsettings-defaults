@@ -5,4 +5,10 @@ glib-compile-schemas /usr/share/glib-2.0/schemas/
 rm /usr/share/applications/yelp.desktop
 
 # Since we have no GECOS help at this moment, just use Mint help as default
-sudo ln -s /usr/share/help/C/linuxmint /usr/share/help/C/ubuntu-help
+ln -s /usr/share/help/C/linuxmint /usr/share/help/C/ubuntu-help
+
+# ImageMagick package adds two icons that poitns to the same application
+# and these applications can't start because they need the terminal.
+# Also this application is not translated into Spanish.
+rm /usr/share/applications/display-im6.desktop
+rm /usr/share/applications/display-im6.q16.desktop
