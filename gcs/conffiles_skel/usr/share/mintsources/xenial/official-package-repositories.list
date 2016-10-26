@@ -7,3 +7,4 @@ deb $basemirror $basecodename-backports main restricted universe multiverse
 
 deb http://v3.gecos.guadalinex.org/gecos/    v3                 main 
 
+deb http://v2.gecos.guadalinex.org/gecos-jda/   v2              main
