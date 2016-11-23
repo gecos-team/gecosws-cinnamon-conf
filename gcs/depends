@@ -6,12 +6,6 @@
 cinnamon
 cinnamon-session-common
 
-# Empty package that creates a dependency to mintsources
-software-properties-gtk
-
-# mintsources needs python-apt
-python-apt
-
 # Include dependencies to ensure that those packages are
 # installed before this (to hack the icons successfully).
 yelp
