@@ -9,5 +9,6 @@ cinnamon-session-common
 # Include dependencies to ensure that those packages are
 # installed before this (to hack the icons successfully).
 yelp
-mint-user-guide-cinnamon
+# user guide package is not available in LinuxMint Tara
+#mint-user-guide-cinnamon
 imagemagick
