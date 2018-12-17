@@ -22,3 +22,6 @@ rm -f /usr/share/applications/joe.desktop
 rm -f /usr/share/applications/jpico.desktop
 rm -f /usr/share/applications/jstar.desktop
 
+# Hide Mint Sources
+rm -f /usr/share/applications/mintsources.desktop
+
